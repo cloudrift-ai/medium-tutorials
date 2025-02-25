@@ -23,5 +23,3 @@ docker exec ollama ollama pull llama3
 ```bash
 python app.py
 ```
-
-4.
