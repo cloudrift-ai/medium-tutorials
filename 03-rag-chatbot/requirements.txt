@@ -1,0 +1,8 @@
+lancedb==0.21.2
+pylance==0.25.2
+tantivy==0.22.2
+agno==1.2.7
+ollama==0.4.7
+streamlit==1.44.1
+pypdf==5.4.0
+sqlalchemy==2.0.39
