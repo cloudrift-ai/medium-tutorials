@@ -16,7 +16,7 @@ def get_knowledge_base():
     vector_db = LanceDb(
         table_name="gloomhaven",
         uri="/tmp/lancedb",
-        search_type=SearchType.keyword,
+        search_type=SearchType.hybrid,
         embedder=embedder
     )
     knowledge_base = PDFUrlKnowledgeBase(
@@ -38,7 +38,7 @@ if 'messages' not in st.session_state:
 
 if 'agent' not in st.session_state:
     st.session_state.agent = agent = Agent(
-    model=Ollama(id="qwen2.5:32b", options={"num_ctx": 16192}),
+    model=Ollama(id="gemma3:27b", options={"num_ctx": 16192}),
     knowledge=get_knowledge_base(),
     add_context=True,
     add_references=True,
