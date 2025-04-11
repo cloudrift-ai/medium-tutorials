@@ -37,7 +37,7 @@ if 'messages' not in st.session_state:
     st.session_state.messages = []
 
 if 'agent' not in st.session_state:
-    st.session_state.agent = agent = Agent(
+    st.session_state.agent = Agent(
     model=Ollama(id="gemma3:27b", options={"num_ctx": 16192}),
     knowledge=get_knowledge_base(),
     add_context=True,
@@ -57,7 +57,7 @@ if 'agent' not in st.session_state:
 
 agent = st.session_state.agent
 
-st.title("Chat with expert Agent")
+st.title("Chat with the Gloomhaven expert")
 
 prompt = st.chat_input("Your question")
 
