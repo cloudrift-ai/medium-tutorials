@@ -1,3 +1,4 @@
+import os
 import streamlit as st
 from agno.agent import Agent
 from agno.embedder.ollama import OllamaEmbedder
@@ -9,10 +10,11 @@ from agno.vectordb.lancedb import LanceDb, SearchType
 # mxbai-embed-large
 # bge-m3
 # snowflake-arctic-embed
+OLLAMA_HOST = os.environ.get("OLLAMA_HOST")
 
 @st.cache_resource
 def get_knowledge_base():
-    embedder = OllamaEmbedder(id="mxbai-embed-large", dimensions=1024)
+    embedder = OllamaEmbedder(id="mxbai-embed-large", dimensions=1024, host=OLLAMA_HOST)
     vector_db = LanceDb(
         table_name="gloomhaven",
         uri="/tmp/lancedb",
@@ -38,7 +40,7 @@ if 'messages' not in st.session_state:
 
 if 'agent' not in st.session_state:
     st.session_state.agent = Agent(
-    model=Ollama(id="gemma3:27b", options={"num_ctx": 16192}),
+    model=Ollama(id="gemma3:27b", options={"num_ctx": 16192}, host=OLLAMA_HOST),
     knowledge=get_knowledge_base(),
     add_context=True,
     add_references=True,
